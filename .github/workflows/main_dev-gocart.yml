@@ -28,7 +28,7 @@ jobs:
           npm run test --if-present
 
       # Debug: List the contents of the current directory after build
-      - name: List contents after build
+      - name: List entire directory contents after build
         run: ls -al
 
       # Debug: List the contents of the build directory specifically
