@@ -32,7 +32,7 @@ jobs:
         run: ls -al .next
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip .next  # Zipping the .next directory
+        run: zip -r release.zip .next # Zipping the .next directory
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -64,4 +64,3 @@ jobs:
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_55FB29151EC14DD8B6B2931DFF9F0164 }}
           package: .
-
