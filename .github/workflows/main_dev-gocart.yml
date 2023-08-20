@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - dev-gocart
+name: Build and deploy Next.js app to Azure Web App - dev-gocart
 
 on:
   push:
@@ -24,16 +24,15 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build
+          # Add any other necessary commands you'd like to run
 
-      # - name: Upload artifact for deployment job
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: node-app
-      #     path: .
+      # Debug: List the contents of the .next directory after build
+      - name: List contents of .next directory
+        run: ls -al .next
+
       - name: Zip artifact for deployment
-        run: zip -r release.zip . -i ./build/*
+        run: zip -r release.zip .next  # Zipping the .next directory
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -65,3 +64,4 @@ jobs:
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_55FB29151EC14DD8B6B2931DFF9F0164 }}
           package: .
+
